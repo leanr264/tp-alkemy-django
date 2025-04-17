@@ -1,0 +1,55 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block titulo %} Autores {% endblock titulo %} 
+
+{% block contenido %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Nacionalidad</th>
+            <th scope="col">Fecha de Nacimiento</th>
+            <th scope="col">Fecha de Fallecimiento</th>
+            <th scope="col">Activo</th>
+            <th scope="col">Creado</th>
+            <th scope="col">Modificado</th>
+            <th scope="col">Detalle</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for autor in autores %}
+        <tr>
+            <th scope="row"><a href="{% url 'app_autores:detalle' autor.id %}">{{autor.id}}</a></th>
+            <td>{{autor.nombre}}</td>
+            <td>{{autor.nacionalidad}}</td>
+            <td>{{autor.fecha_nacimiento}}</td>
+
+            {% if autor.fecha_fallecimiento %}
+                <td>{{autor.fecha_fallecimiento}}</td>
+            {% else %}
+                <td>Vive</td>
+            {% endif %}
+
+            {% if autor.activo %}
+                <td>
+                    <img src="{% static 'img/activo.png' %}" alt="SI" width=32px>
+                </td>
+            {% else %}
+                <td>
+                    <img src="{% static 'img/inactivo.png' %}" alt="NO" width=32px>
+                </td>
+            {% endif %}
+            
+            <td>{{autor.creado}}</td>
+            <td>{{autor.modificado}}</td>
+            <td>
+                <a href="{% url 'app_autores:detalle' autor.id %}">
+                    <img src="{% static 'img/detalle.png' %}" alt="Ir a detalle">
+                </a>
+            </td>
+          </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock contenido %}

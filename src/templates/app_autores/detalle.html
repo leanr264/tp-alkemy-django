@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo %}
+    Detalle de {{autor}}
+{% endblock titulo %}
+
+{% block contenido %}
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{autor.nombre}}</h5>
+      <p class="card-text">Nacido el {{autor.fecha_nacimiento}}</p>
+      <p class="card-text">En {{autor.nacionalidad}}</p>
+      <p class="card-text">{{autor.id}}</p>
+      <a href="{% url 'app_autores:presentacion'%}" class="btn btn-primary">
+        <img src="{% static 'img/atras.png' %}" alt="Volver" width=32px>
+      </a>
+    </div>
+  </div>
+
+{% endblock contenido %}

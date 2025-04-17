@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo %} Proyecto Integrador Django {% endblock titulo %} 
+
+{% block contenido %}
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{% static 'img/libros.png' %}" class="img-fluid rounded-start" alt="imagen-principal">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Proyecto Integrador con Django para Alkemy</h5>
+          <p class="card-text">        
+            Este trabajo consiste en la creación de un proyecto Django dentro de un entorno virtual,
+            El cuál contiene una aplicación que registra modelos de autores con sus respectivos datos 
+            asociados a las frases que son de su autoría. 
+          </p>
+          <h6 class="card-subtitle mb-2 text-body-secondary">Desarrollado por: Leandro Racedo</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock contenido %}
