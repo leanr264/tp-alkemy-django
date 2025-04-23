@@ -11,8 +11,8 @@
       <h5 class="card-title">{{autor.nombre}}</h5>
       <p class="card-text">Nacido el {{autor.fecha_nacimiento}}</p>
       <p class="card-text">En {{autor.nacionalidad}}</p>
-      <p class="card-text">{{autor.id}}</p>
-      <a href="{% url 'app_autores:presentacion'%}" class="btn btn-primary">
+      <p class="card-text">Número de Identificación {{autor.id}}</p>
+      <a href="{% url 'app_autores:lista_autores' %}" class="btn btn-primary">
         <img src="{% static 'img/atras.png' %}" alt="Volver" width=32px>
       </a>
     </div>

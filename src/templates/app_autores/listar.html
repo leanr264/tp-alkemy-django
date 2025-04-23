@@ -6,7 +6,6 @@
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">Nombre</th>
             <th scope="col">Nacionalidad</th>
             <th scope="col">Fecha de Nacimiento</th>
@@ -15,13 +14,17 @@
             <th scope="col">Creado</th>
             <th scope="col">Modificado</th>
             <th scope="col">Detalle</th>
+            <th scope="col">Borrar</th>
         </tr>
     </thead>
     <tbody>
         {% for autor in autores %}
         <tr>
-            <th scope="row"><a href="{% url 'app_autores:detalle' autor.id %}">{{autor.id}}</a></th>
-            <td>{{autor.nombre}}</td>
+            <td>
+                <a href="{% url 'app_autores:detalle' autor.id %}">
+                    {{autor.nombre}}
+                </a>
+            </td>
             <td>{{autor.nacionalidad}}</td>
             <td>{{autor.fecha_nacimiento}}</td>
 
@@ -31,21 +34,28 @@
                 <td>Vive</td>
             {% endif %}
 
-            {% if autor.activo %}
-                <td>
-                    <img src="{% static 'img/activo.png' %}" alt="SI" width=32px>
-                </td>
-            {% else %}
-                <td>
-                    <img src="{% static 'img/inactivo.png' %}" alt="NO" width=32px>
-                </td>
-            {% endif %}
-            
+            <td>
+                <a href="{% url 'app_autores:modificar_estado' autor.id %}">
+                    {% if autor.activo %}
+                        <img src="{% static 'img/activo.png' %}" alt="SI" width="32px">
+                    {% else %}
+                        <img src="{% static 'img/inactivo.png' %}" alt="NO" width="32px">
+                    {% endif %}
+                </a>
+            </td>
+
             <td>{{autor.creado}}</td>
             <td>{{autor.modificado}}</td>
+
             <td>
                 <a href="{% url 'app_autores:detalle' autor.id %}">
                     <img src="{% static 'img/detalle.png' %}" alt="Ir a detalle">
+                </a>
+            </td>
+            
+            <td>
+                <a href="{% url 'app_autores:borrar' autor.id %}">
+                    <img src="{% static 'img/borrar.png' %}" alt="borrar" width="32px">
                 </a>
             </td>
           </tr>
