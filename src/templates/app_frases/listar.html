@@ -1,0 +1,52 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block titulo %} Frases {% endblock titulo %} 
+
+{% block contenido %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Autor</th>
+            <th scope="col">Frase</th>
+            <th scope="col">Comentarios</th>
+            <th scope="col">Fecha de la frase</th>
+            <th scope="col">Visible</th>
+            <th scope="col">Creado</th>
+            <th scope="col">Modificado</th>
+            <th scope="col">Detalle</th>
+            <th scope="col">Borrar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for frase in lista_frases %}
+        <tr>
+            <td>
+                    {{frase.autor}}
+            </td>
+            <td>{{frase.frase}}</td>
+            <td>{{frase.comentarios}}</td>
+            <td>{{frase.fecha_frase}}</td>
+    
+            <td>
+                    {% if frase.visible %}
+                        <img src="{% static 'img/activo.png' %}" alt="SI" width="32px">
+                    {% else %}
+                        <img src="{% static 'img/inactivo.png' %}" alt="NO" width="32px">
+                    {% endif %}
+            </td>
+
+            <td>{{frase.creado}}</td>
+            <td>{{frase.modificado}}</td>
+
+            <td>
+                    <img src="{% static 'img/detalle.png' %}" alt="Ir a detalle">
+            </td>
+            
+            <td>
+                    <img src="{% static 'img/borrar.png' %}" alt="borrar" width="32px">
+            </td>
+          </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock contenido %}
