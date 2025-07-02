@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
+from django.views.generic import CreateView, UpdateView
 from django.core import serializers
 from django.http import JsonResponse, HttpResponseRedirect
-from django.urls import reverse
-from . models import Autor
+from django.urls import reverse, reverse_lazy
+from .models import Autor
 # Create your views here.
 
 
@@ -55,3 +56,17 @@ def modificar_estado(request, id):
     autor_a_modificar.activo = not autor_a_modificar.activo
     autor_a_modificar.save()
     return HttpResponseRedirect(reverse('app_autores:lista_autores'))
+
+
+class AutorCreateView(CreateView):
+    model = Autor
+    fields = '__all__'
+    success_url = reverse_lazy('app_autores:lista_autores')
+    template_name = 'crear.html'
+
+
+class AutorUpdateView(UpdateView):
+    model = Autor
+    fields = '__all__'
+    success_url = reverse_lazy('app_autores:lista_autores')
+    template_name = 'crear.html'

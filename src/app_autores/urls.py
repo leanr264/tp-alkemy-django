@@ -13,4 +13,6 @@ urlpatterns = [
     path('borrar/<int:id>/', views.borrar_autor, name='borrar'),
     path('modificar_estado/<int:id>/',
          views.modificar_estado, name='modificar_estado'),
+    path('crear/', views.AutorCreateView.as_view(), name='crear'),
+    path('modificar/<int:pk>', views.AutorUpdateView.as_view(), name='modificar'),
 ]
