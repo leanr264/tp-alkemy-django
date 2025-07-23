@@ -1,5 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.core import serializers
+from django.http import JsonResponse
 from django.urls import reverse_lazy
 from .models import Frase
 from app_autores.models import Autor
@@ -52,3 +54,9 @@ def frases_por_autor(request, id):
                   'app_frases/listar_por_autor.html',
                   {'autor': autor,
                    'frases': frases})
+
+
+def listar_frases_visibles_json(request):
+    frases = get_list_or_404(Frase.objects.all().filter(visible=True))
+    frases_json = serializers.serialize('json', frases)
+    return JsonResponse(frases_json, safe=False)
