@@ -14,6 +14,7 @@
             <th scope="col">Creado</th>
             <th scope="col">Modificado</th>
             <th scope="col">Detalle</th>
+            <th scope="col">Frases</th>
             <th scope="col">Borrar</th>
         </tr>
     </thead>
@@ -50,6 +51,12 @@
             <td>
                 <a href="{% url 'app_autores:detalle' autor.id %}">
                     <img src="{% static 'img/detalle.png' %}" alt="Ir a detalle">
+                </a>
+            </td>
+
+            <td>
+                <a href="{% url 'app_frases:lista_por_autor' autor.id %}">
+                    <img src="{% static 'img/frases.png' %}" alt="Ir a frases" width="32px">
                 </a>
             </td>
             

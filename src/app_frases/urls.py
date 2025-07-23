@@ -6,6 +6,7 @@ from .views import (
     FraseCreateView,
     FraseUpdateView,
     FraseDeleteView,
+    frases_por_autor,
 )
 
 app_name = 'app_frases'
@@ -19,4 +20,5 @@ urlpatterns = [
     path('crear/', FraseCreateView.as_view(), name='crear'),
     path('modificar/<int:pk>/', FraseUpdateView.as_view(), name='modificar'),
     path('borrar/<int:pk>/', FraseDeleteView.as_view(), name='borrar'),
+    path('lista_por_autor/<int:id>/', frases_por_autor, name='lista_por_autor'),
 ]

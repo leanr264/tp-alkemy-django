@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo %}
+    Frases de {{autor}}
+{% endblock titulo %}
+
+{% block contenido %}
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{autor.nombre}}</h5>
+      {% for frase in frases %}
+        <p class="card-text">{{frase.frase}}</p>
+        <p class="card-text">{{frase.comentarios}}</p>
+      {% endfor %} 
+        <a href="{% url 'app_autores:lista_autores' %}" class="btn btn-primary">
+        <img src="{% static 'img/atras.png' %}" alt="Volver" width=32px>
+      </a>
+    </div>
+  </div>
+
+{% endblock contenido %}

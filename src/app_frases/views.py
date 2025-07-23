@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Frase
+from app_autores.models import Autor
 
 # Create your views here.
 
@@ -42,3 +43,12 @@ class FraseDeleteView(DeleteView):
     model = Frase
     template_name = 'borrar.html'
     success_url = reverse_lazy('app_frases:lista_frases')
+
+
+def frases_por_autor(request, id):
+    autor = get_object_or_404(Autor, id=id)
+    frases = Frase.objects.filter(autor=autor)
+    return render(request,
+                  'app_frases/listar_por_autor.html',
+                  {'autor': autor,
+                   'frases': frases})

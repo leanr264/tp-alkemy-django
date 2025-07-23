@@ -4,6 +4,7 @@ from django.core import serializers
 from django.http import JsonResponse, HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from .models import Autor
+from app_frases.models import Frase
 # Create your views here.
 
 
@@ -13,9 +14,11 @@ def vista_presentacion(request):
 
 def detalle_autor(request, id):
     autor = get_object_or_404(Autor, id=id)
+    cantidad_frases = Frase.objects.filter(autor=autor).count()
     return render(request,
                   'app_autores/detalle.html',
-                  {'autor': autor})
+                  {'autor': autor,
+                   'cantidad_frases': cantidad_frases})
 
 
 def listar_autores(request):
